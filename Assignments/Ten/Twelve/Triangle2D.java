@@ -19,6 +19,27 @@ public class Triangle2D {
 	}
 	
 	//Accessor methods (Set & Get)
+	public MyPoint getP1(){
+		return this.p1;
+	}
+	public MyPoint getP2(){
+		return this.p2;
+	}
+	public MyPoint getP3(){
+		return this.p3;
+	}
+	public void setP1(double newX, double newY){
+		this.p1.setX(newX);
+		this.p1.setY(newY);
+	}
+	public void setP2(double newX, double newY){
+		this.p2.setX(newX);
+		this.p2.setY(newY);
+	}
+	public void setP3(double newX, double newY){
+		this.p3.setX(newX);
+		this.p3.setY(newY);
+	}
 	
 	//Action methods
 	public double getArea(){
