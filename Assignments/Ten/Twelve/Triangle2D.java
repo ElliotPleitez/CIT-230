@@ -7,6 +7,7 @@ public class Triangle2D {
 	//Fields/Properties
 	private MyPoint p1, p2, p3; //where p1 is lower left, p2 is top center, p3 is lower right
 	
+	//Constructors
 	public Triangle2D(){
 		p1 = new MyPoint(0, 0);
 		p2 = new MyPoint(1, 1);
@@ -63,9 +64,47 @@ public class Triangle2D {
 		}
 	}
 	public boolean overlaps(Triangle2D t){
-		//Triangle overlaps:
-/////////
+		//Triangle overlaps: Ax+By=C
+		Object[] triangle1 = {
+				new Line(this.p1.getX(), this.p1.getY(), this.p2.getX(), this.p2.getY()),
+				new Line(this.p2.getX(), this.p2.getY(), this.p3.getX(), this.p3.getY()),
+				new Line(this.p3.getX(), this.p3.getY(), this.p1.getX(), this.p1.getY())
+		};
+		Object[] triangle2 = {
+				new Line(t.p1.getX(), t.p1.getY(), t.p2.getX(), t.p2.getY()),
+				new Line(t.p2.getX(), t.p2.getY(), t.p3.getX(), t.p3.getY()),
+				new Line(t.p3.getX(), t.p3.getY(), t.p1.getX(), t.p1.getY())
+		};
+		
+		//compare each line with another
 		return false;
+	}
+	
+	//Create a Geometry class to place this in for future use
+	private class Line {
+		//Fields/Properties
+		private double p1x, p1y, p2x, p2y;
+		private double A, B, C;
+		
+		//Constructors
+		public Line(double p1x,double p1y,double p2x,double p2y){
+			this.A = this.p2y - this.p1y;
+			this.B = this.p1x - this.p2x;
+			this.C = this.A * this.p1x + this.B * this.p1y;
+		}
+		
+		//Accessor methods (Get & Set)
+		public double getA(){
+			return this.A;
+		}
+		public double getB(){
+			return this.B;
+		}
+		public double getC(){
+			return this.C;
+		}
+		
+		//Action methods
 	}
 	
 	private double calculateArea(MyPoint p1, MyPoint p2, MyPoint p3){
@@ -78,9 +117,9 @@ public class Triangle2D {
 	private boolean calculateContains(MyPoint p){
 		//Point lie within: if area between p and alternating points around triangle equal to area of triangle then p must lie within triangle		
 		double tempArea1, tempArea2, tempArea3;
-		tempArea1 = this.calculateArea(p, this.p2, this.p3);
-		tempArea2 = this.calculateArea(p, this.p1, this.p3);
-		tempArea3 = this.calculateArea(p, this.p1, this.p2);
+		tempArea1 = this.calculateArea(p, this.p1, this.p2);
+		tempArea2 = this.calculateArea(p, this.p2, this.p3);
+		tempArea3 = this.calculateArea(p, this.p3, this.p1);
 		
 		if(tempArea1 + tempArea2 + tempArea3 == this.calculateArea(this.p1, this.p2, this.p3)){
 			return true; //p lies within this
