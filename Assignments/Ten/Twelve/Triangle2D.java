@@ -92,7 +92,6 @@ public class Triangle2D {
 				//System.out.println("Triangle 2, Line " + j + " Y: " + y);
 			}
 		}
-		//compare each line with another
 		return false;
 	}
 	
