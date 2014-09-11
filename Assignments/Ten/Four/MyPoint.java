@@ -35,7 +35,7 @@ public class MyPoint {
 	//Action methods
 	public double getDistance(MyPoint otherPoint){
 		//Distance formula: d = sqrt(square(X2-X1) + square(Y2-Y1))
-		double distance = Math.sqrt(Math.pow(otherPoint.x, this.x) + Math.pow(otherPoint.y, this.y));
+		double distance = Math.sqrt(Math.pow(otherPoint.x - this.x, 2) + Math.pow(otherPoint.y - this.y, 2));
 		return distance;
 	}
 	
