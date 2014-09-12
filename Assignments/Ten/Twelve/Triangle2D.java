@@ -1,6 +1,8 @@
 package Ten.Twelve;
 import Ten.Four.MyPoint;
 
+//Hi
+
 //Add area to field/properties so calculateArea() does not need to be executed so many times
 
 public class Triangle2D {
