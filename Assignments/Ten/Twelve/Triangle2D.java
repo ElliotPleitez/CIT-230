@@ -15,10 +15,10 @@ public class Triangle2D {
 		this.p2 = new MyPoint(1, 1);
 		this.p3 = new MyPoint(2, 5);
 	}
-	public Triangle2D(double x1, double y1, double x2, double y2, double x3, double y3){
-		this.p1 = new MyPoint(x1, y1);
-		this.p2 = new MyPoint(x2, y2);
-		this.p3 = new MyPoint(x3, y3);
+	public Triangle2D(MyPoint p1, MyPoint p2, MyPoint p3){
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
 	}
 	
 	//Accessor methods (Set & Get)
