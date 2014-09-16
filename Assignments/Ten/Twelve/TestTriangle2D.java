@@ -10,12 +10,6 @@ class TestTriangle2D {
 	
   public static void main(String[] args) {
 	  
-    Triangle2D t = new Triangle2D(); // Creates an instance t of Triangle2D a no-arg constructor.
-    
-    // Display coordinates of default Triangle2D
-    System.out.println("The area of the triangle with points at " + t.getP1() + ", " 
-      + t.getP2() + ", " + " and " + t.getP3() + " is \nArea = " + t.getArea());
-    
     /**  Given 3 points with coordinates p1, p2, and p3 */
     MyPoint p1 = new MyPoint(2.5, 2);
     MyPoint p2 = new MyPoint(4.2, 3);
@@ -25,8 +19,9 @@ class TestTriangle2D {
     Triangle2D t1 = new Triangle2D(p1, p2, p3);
     
     // Display the coordinates and area of triangle t1
-    System.out.println("The area of the triangle with points at " + t1.getP1() + ", " 
-      + t1.getP2() + ", " + " and " + t1.getP3() + " is t1 Area = " + t1.getArea());
+    System.out.println("The area of the triangle t1 with points at p1(" + p1.getX() + ", " 
+      + p1.getY() + "), p2(" +  p2.getX() + ", " + p2.getY() + "), and p3(" + p3.getX() + ", " 
+      + p3.getY() + ") is Area = " + t1.getArea());
     
     // Display the perimeter of triangle t1
     System.out.println("It's perimeter is t1 Perimeter = " + t1.getPerimeter());
