@@ -36,16 +36,18 @@ class TestTriangle2D {
     p2 = new MyPoint(4, 1);
     p3 = new MyPoint(1, 3.4);
     Triangle2D t2 = new Triangle2D(p1, p2, p3);
-    System.out.println("How about the triangle with points at ((2.9, 2), (4, 1), (1, 3.4))? " 
-                       + "\nAnswer is " + t1.contains(t2));
+    System.out.println("How about the triangle with points at p1(" + p1.getX() + ", " 
+      + p1.getY() + "), p2(" +  p2.getX() + ", " + p2.getY() + "), and p3(" + p3.getX() + ", " 
+      + p3.getY() + ") \nAnswer is " + t1.contains(t2));
     
     // Given points p1, p2, and p3 create intance t3 of Triangle2D and check if it overlaps t1
     p1 = new MyPoint(2, 5.5);
     p2 = new MyPoint(4, -3);
     p3 = new MyPoint(2, 6.5);
     Triangle2D t3 = new Triangle2D(p1, p2, p3);
-    System.out.println("Does the triangle at ((2, 5.5), (4, -3), (2, 6.5)) overlap t1? \nAnswer is  "
-                       + t1.overlaps(t3));
+    System.out.println("Does the triangle at p1(" + p1.getX() + ", " + p1.getY() + "), p2(" 
+      +  p2.getX() + ", " + p2.getY() + "), and p3(" + p3.getX() + ", " 
+      + p3.getY() + ") overlaps t1? \nAnswer is " + t1.overlaps(t3));
     
   }
   
