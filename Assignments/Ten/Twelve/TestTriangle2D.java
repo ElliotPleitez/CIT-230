@@ -19,12 +19,14 @@ class TestTriangle2D {
     p1 = new MyPoint(2.9, 2);
     p2 = new MyPoint(4, 1);
     p3 = new MyPoint(1, 3.4);
+    Triangle2D t2 = new Triangle2D(p1, p2, p3);
     System.out.println("How about the triangle with points at ((2.9, 2), (4, 1), (1, 3.4))? " 
-                       + "\nAnswer is " + t1.containsTriangle(p1, p2, p3));
+                       + "\nAnswer is " + t1.contains(t2));
     p1 = new MyPoint(2, 5.5);
     p2 = new MyPoint(4, -3);
     p3 = new MyPoint(2, 6.5);
+    Triangle2D t3 = new Triangle2D(p1, p2, p3);
     System.out.println("Does the triangle at ((2, 5.5), (4, -3), (2, 6.5)) overlap t1? \nAnswer is  "
-                       + t1.overlapsTriangle(p1, p2, p3));
+                       + t1.overlaps(t3));
   }
 }
