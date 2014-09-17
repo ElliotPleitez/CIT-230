@@ -1,4 +1,8 @@
 package Ten.Four;
+
+//Author: Luisito Espanola, Elliot J Pleitez
+//Date: 2014-09-16
+
 /** This creates a test program to test the MyPoint class. It creates two points with coordinates (0, 0) and (10, 30.5)
  * then it calculates the distance between the two points. */
 
