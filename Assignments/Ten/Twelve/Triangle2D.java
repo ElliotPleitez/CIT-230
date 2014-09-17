@@ -1,9 +1,10 @@
 package Ten.Twelve;
 import Ten.Four.MyPoint;
 
-//Hi
-
-//Add area to field/properties so calculateArea() does not need to be executed so many times
+//Author: Elliot J Pleitez, Luisito Espanola
+//Date: 2014-09-16
+//Description: This is a triangle class, it has a default size, or variable size. It has the ability to calculate it's area, perimeter and whether a point or line is within or crosses itself
+//Note: Add area to field/properties so calculateArea() does not need to be executed so many times
 
 public class Triangle2D {
 	//Fields/Properties
@@ -44,14 +45,12 @@ public class Triangle2D {
 		this.p3.setY(newY);
 	}
 	
-	//Action methods
 	public double getArea(){
 		return this.calculateArea(this.p1, this.p2, this.p3);
 	}
 	public double getPerimeter(){
 		//Perimeter of a triangle: p = a + b + c
-		double perimeter = this.p1.getDistance(this.p2) + this.p2.getDistance(this.p3) + this.p3.getDistance(this.p1);
-		return perimeter;
+		return this.p1.getDistance(this.p2) + this.p2.getDistance(this.p3) + this.p3.getDistance(this.p1);
 	}
 	public boolean contains(MyPoint p){
 		return this.calculateContains(p);
@@ -77,7 +76,8 @@ public class Triangle2D {
 				new Line(t.p2.getX(), t.p2.getY(), t.p3.getX(), t.p3.getY()),
 				new Line(t.p3.getX(), t.p3.getY(), t.p1.getX(), t.p1.getY())
 		};
-		
+
+		//For every line within triangle 1 compare with every line of triangle 2
 		for(int i=0; i < triangle1.length; i++){
 			for(int j=0; j < triangle2.length; j++){
 				double ratio = triangle1[i].getA() * triangle2[j].getB() - triangle2[j].getA() * triangle1[i].getB();
@@ -95,6 +95,28 @@ public class Triangle2D {
 			}
 		}
 		return false;
+	}
+	
+	private double calculateArea(MyPoint p1, MyPoint p2, MyPoint p3){
+		//Area of a triangle: a = (h * b) / 2
+		//Area of a triangle: [X1(Y2 - Y3) + X2(Y3 - Y1) + X3(Y1 - Y2)] / 2
+		//Legend: h=height, b=base
+		return Math.abs((p1.getX() * ((p2.getY() - p3.getY())) + p2.getX() * ((p3.getY() - p1.getY())) + p3.getX() * (p1.getY() - p2.getY())) / 2);
+	}
+	private boolean calculateContains(MyPoint p){
+		//Point lie within: if area between p and alternating points around triangle equal to area of triangle then p must lie within triangle
+		//Note: if point lies on line then it does NOT return true
+		double tempArea1, tempArea2, tempArea3;
+		tempArea1 = this.calculateArea(this.p1, this.p2, p);
+		tempArea2 = this.calculateArea(p, this.p2, this.p3);
+		tempArea3 = this.calculateArea(this.p1, p, this.p3);
+		
+		if(tempArea1 + tempArea2 + tempArea3 == this.getArea()){
+			return true; //p lies within this
+		}
+		else{
+			return false; //p does not lie within this
+		}
 	}
 	
 	//Create a Geometry class to place this in for future use
@@ -139,29 +161,6 @@ public class Triangle2D {
 		}
 		
 		//Action methods
-	}
-	
-	private double calculateArea(MyPoint p1, MyPoint p2, MyPoint p3){
-		//Area of a triangle: a = (h * b) / 2
-		//Area of a triangle: [X1(Y2 - Y3) + X2(Y3 - Y1) + X3(Y1 - Y2)] / 2
-		//Legend: h=height, b=base
-		double area = Math.abs((p1.getX() * ((p2.getY() - p3.getY())) + p2.getX() * ((p3.getY() - p1.getY())) + p3.getX() * (p1.getY() - p2.getY())) / 2);
-		return area;
-	}
-	private boolean calculateContains(MyPoint p){
-		//Point lie within: if area between p and alternating points around triangle equal to area of triangle then p must lie within triangle
-		//Note: if point lies on line then it does NOT return true
-		double tempArea1, tempArea2, tempArea3;
-		tempArea1 = this.calculateArea(this.p1, this.p2, p);
-		tempArea2 = this.calculateArea(p, this.p2, this.p3);
-		tempArea3 = this.calculateArea(this.p1, p, this.p3);
-		
-		if(tempArea1 + tempArea2 + tempArea3 == this.calculateArea(this.p1, this.p2, this.p3)){
-			return true; //p lies within this
-		}
-		else{
-			return false; //p does not lie within this
-		}
 	}
 	
 }
