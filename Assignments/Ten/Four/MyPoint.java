@@ -2,8 +2,8 @@ package Ten.Four;
 
 //Author: Elliot J Pleitez, Luisito Espanola
 //Date: 2014-09-07
-//Description: This class defines a point. It is self aware of it's coordinates and can calculate the distance between it and another point.
-//				This class can change it's point.
+//Description: This class defines a point. It is self aware of it's coordinates and can calculate the distance between it and another point. This class can change it's point.
+//Note: 
 
 public class MyPoint {
 	//Fields/Properties
