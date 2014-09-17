@@ -1,6 +1,9 @@
 package Ten.Twelve;
 import Ten.Four.*;
 
+//Author: Luisito Espanola, Elliot J Pleitez
+//Date: 2014-09-16
+
 /** This creates a program to test Triangle2D class. It creates a triangle with given coordinates, computes
  *  the area, calculates the perimeter and determines whether a given point is contained inside the triangle. 
  *  It also checks whether a given triangle is contained inside the original triangle and another given 
