@@ -3,9 +3,9 @@ package Ten.Thirteen;
 public class TestMyRectangle2D {
 
 	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 //		MyRectangle2D rectangle1 = new MyRectangle2D(0, 0, 5, 5);
-//		MyRectangle2D rectangle2 = new MyRectangle2D(2.5, 2.5, 10, 10);
+//		MyRectangle2D rectangle2 = new MyRectangle2D(3, 3, 10, 10);
 //
 //		System.out.println("Length: " + rectangle1.getLength());
 //		System.out.println("Width: " + rectangle1.getWidth());

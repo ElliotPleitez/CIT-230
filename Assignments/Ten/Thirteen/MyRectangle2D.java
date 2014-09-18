@@ -2,7 +2,7 @@ package Ten.Thirteen;
 
 //Author: Elliot J Pleitez, Luisito Espanola
 //Date: 2014-09-16
-//Description:
+//Description: This is a rectangle class, it has a default size, or variable size. It has the ability to calculate it's area, perimeter and whether a point or line is within or crosses itself
 //Notes: 
 
 public class MyRectangle2D {
@@ -68,40 +68,42 @@ public class MyRectangle2D {
 	
 	//Action methods	
 	public boolean contains(double x, double y){
-		return this.contains(new MyRectangle2D(x, y, x, y));
+		return this.calculateContains(x, y);
 	}
 	
 	public boolean contains(MyRectangle2D r){
-		this.calculateContains(
-			new MyRectangle2D(x, y, x + length, y + width)
-		);
-		return false;
+		if(this.contains(r.x, r.y) && this.contains(r.x, r.y + r.width) && this.contains(r.x + r.length, r.y + r.width) && this.contains(r.x + r.length, r.y)){
+			return true; //All points are within this
+		}
+		else{
+			return false; //One point is not within this
+		}
 	}
 	
 	public boolean overlaps(MyRectangle2D r){
 		//Triangle overlaps: Ax+By=C
 		Line[] rectangle1 = {
-				new Line(this.x, this.y, this.x, this.y + width),
-				new Line(this.x, this.y + width, this.x + length, this.y + width),
-				new Line(this.x + length, this.y + width, this.x + length, this.y),
-				new Line(this.x + length, this.y, this.x, this.y)
+				new Line(this.x, this.y, this.x, this.y + this.width),
+				new Line(this.x, this.y + this.width, this.x + this.length, this.y + this.width),
+				new Line(this.x + this.length, this.y + this.width, this.x + this.length, this.y),
+				new Line(this.x + this.length, this.y, this.x, this.y)
 		};
-		Line[] triangle2 = {
-				new Line(r.x, r.y, r.x, r.y + width),
-				new Line(r.x, r.y + width, r.x + length, r.y + width),
-				new Line(r.x + length, r.y + width, r.x + length, r.y),
-				new Line(r.x + length, r.y, r.x, r.y)
+		Line[] rectangle2 = {
+				new Line(r.x, r.y, r.x, r.y + r.width),
+				new Line(r.x, r.y + r.width, r.x + r.length, r.y + r.width),
+				new Line(r.x + r.length, r.y + r.width, r.x + r.length, r.y),
+				new Line(r.x + r.length, r.y, r.x, r.y)
 		};
 		
 		//For every line within rectangle 1 compare with every line of rectangle 2
 		for(int i=0; i < rectangle1.length; i++){
-			for(int j=0; j < triangle2.length; j++){
-				double ratio = rectangle1[i].getA() * triangle2[j].getB() - triangle2[j].getA() * rectangle1[i].getB();
-				double x = (triangle2[j].getB() * rectangle1[i].getC() - rectangle1[i].getB() * triangle2[j].getC()) / ratio;
-				double y = (rectangle1[i].getA() * triangle2[j].getC() - triangle2[j].getA() * rectangle1[i].getC()) / ratio;
+			for(int j=0; j < rectangle2.length; j++){
+				double ratio = rectangle1[i].getA() * rectangle2[j].getB() - rectangle2[j].getA() * rectangle1[i].getB();
+				double x = (rectangle2[j].getB() * rectangle1[i].getC() - rectangle1[i].getB() * rectangle2[j].getC()) / ratio;
+				double y = (rectangle1[i].getA() * rectangle2[j].getC() - rectangle2[j].getA() * rectangle1[i].getC()) / ratio;
 				
-				if(Math.min(rectangle1[i].get1X(), triangle2[j].get2X()) < x && Math.max(rectangle1[i].get1X(), triangle2[j].get2X()) < x){
-					if(Math.min(rectangle1[i].get1Y(), triangle2[j].get2Y()) < y && Math.max(rectangle1[i].get1Y(), triangle2[j].get2Y()) < y){
+				if(Math.min(rectangle1[i].get1X(), rectangle2[j].get2X()) < x && Math.max(rectangle1[i].get1X(), rectangle2[j].get2X()) < x){
+					if(Math.min(rectangle1[i].get1Y(), rectangle2[j].get2Y()) < y && Math.max(rectangle1[i].get1Y(), rectangle2[j].get2Y()) < y){
 						return true; //line segment crosses rectangle
 					}
 				}
@@ -119,21 +121,23 @@ public class MyRectangle2D {
 		return Math.abs((a - b) / 2);
 	}
 	
-	private boolean calculateContains(MyRectangle2D r){
+	private boolean calculateContains(double x, double y){
 		//Point lie within: if area between r and alternating points around rectangle equal to area of rectangle then r must lie within rectangle
 		//Note: if point lies on line then it does NOT return true
 		double tempArea1, tempArea2, tempArea3, tempArea4;
-		tempArea1 = this.calculateArea(this.x, this.y, this.x + this.length, r.x);
-		tempArea2 = 0;
-		tempArea3 = 0;
-		tempArea4 = 0;
+		tempArea1 = this.calculateArea(this.x, this.y, x, y);
+		tempArea2 = this.calculateArea(this.x, (this.y + this.width) - y, x, this.width - y);
+		tempArea3 = this.calculateArea((this.x + this.length) - x, (this.width - y) - y, (this.x + this.length) - x, (this.y + this.width) - x);
+		tempArea4 = this.calculateArea((this.x + this.length) - x, y, (this.x + this.length) - x,y - this.y);
 		
 		if(tempArea1 + tempArea2 + tempArea3 + tempArea4 == this.getArea()){
-			return true; //r lies within this
+			return true; //x,y lies within this
 		}
 		else{
-			return false; //r does not lie within this
+			return false; //x,y does not lie within this
 		}
+		
+		
 	}
 	
 	//Create a Geometry class to place this in for future use
