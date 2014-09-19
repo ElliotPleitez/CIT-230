@@ -1,21 +1,28 @@
 package Ten.Thirteen;
 
-public class TestMyRectangle2D {
+//Author: Luisito Espanola, Elliot J Pleitez
+//Date: 2014-09-17
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		MyRectangle2D rectangle1 = new MyRectangle2D(0, 0, 5, 5);
-		MyRectangle2D rectangle2 = new MyRectangle2D(3, 3, 10, 10);
-		MyRectangle2D rectangle3 = new MyRectangle2D(5, 5, 7, 7);
+/** Write a test program to test MyRectangle2D class. Create rectangle r1 with fields (2, 2, 5.5, 4.9) 
 
-//		System.out.println("Gray Length: " + rectangle1.getLength());
-//		System.out.println("Gray Width: " + rectangle1.getWidth());
-//		System.out.println("Gray Area is: " + rectangle1.getArea());
-//		System.out.println("Gray Perimeter is: " + rectangle1.getPerimeter());
-//		System.out.println("Gray Contains Green: " + rectangle1.contains(1, 1));
-//		System.out.println("Gray Contains Orange: " + rectangle1.contains(10, 10));
-		System.out.println("Brown Contains Red: " + rectangle2.contains(rectangle3));
-//		System.out.println("Gray Overlaps Brown: " + rectangle1.overlaps(rectangle2));
-	}
+Display its area and perimeter. Check if r1 contains point (3, 3) and rectangle(4, 5, 10.5, 3.2)  
+Check if it overlaps rectangle(3, 5, 2.3, 5.4) */
+
+class TestMyRectangle2D {
+
+  public static void main(String[] args) {
+
+    MyRectangle2D r1 = new MyRectangle2D(2, 2, 5.5, 4.9);
+    System.out.println("The area of rectangle r1 is Area = " + r1.getArea());
+    System.out.println("The perimeter of rectangle r1 is Perimeter = " + r1.getPerimeter());
+    System.out.println("Does rectangle r1 contain point(3, 3)? Answer = " + r1.contains(3, 3));
+    System.out.println("Does rectangle r1 contain rectangle r(4, 5, 10.5, 3.2)? \nAnswer = " +         
+
+      r1.contains(new MyRectangle2D(4, 5, 10.5, 3.2)));
+    System.out.println("Does rectangle r1 overlap rectangle r(3, 5, 2.3, 5.4)? \nAnswer = " +          
+
+      r1.overlaps(new MyRectangle2D(3, 5, 2.3, 5.4)));
+  }
 
 }
+
