@@ -1,3 +1,5 @@
+package Eleven.Eight;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -109,8 +111,6 @@ class Account {
 /** Withdraw some money */
 
   public void makeWithdrawal() {
-    java.util.Date date = new java.util.Date(); // Set date of withdrawal
-    char type = 'W'; // Set type as W for withdrawal
     Scanner inputAmount = new Scanner(System.in); 
     System.out.println("Enter amount to withdraw i.e 1000 : "); // Prompt user for withdrawal amount
     double amount = inputAmount.nextDouble(); // Record amount of withdrawal
@@ -118,14 +118,14 @@ class Account {
     Scanner inputDesc = new Scanner(System.in);
     System.out.println("Enter a description: "); // Prompt user for a description
     String description = inputDesc.next(); // Record description
+    
     // Create an instance of the Transaction
-    Transaction withdrawal = new Transaction(date, type, amount, balance, description);
+    //Note: All values are not being added to array
+    Transaction withdrawal = new Transaction(new java.util.Date(), 'W', amount, balance, description);
     this.transactions.add(withdrawal); // Save transaction to the list of transactions
   }
 
   public void makeDeposit() {
-    java.util.Date date = new java.util.Date();
-    char type = 'D';
     Scanner inputAmount = new Scanner(System.in);    
     System.out.println("Enter amount to deposit i.e 1000 : ");
     double amount = inputAmount.nextDouble();
@@ -133,14 +133,34 @@ class Account {
     Scanner inputDesc = new Scanner(System.in);    
     System.out.println("Enter a description: ");
     String description = inputDesc.next();
-    Transaction deposit = new Transaction(date, type, amount, balance, description);
+    
+    // Create an instance of the Transaction    
+    //Note: All values are not being added to array
+    Transaction deposit = new Transaction(new java.util.Date(), 'D', amount, balance, description);
     this.transactions.add(deposit);
   }
 
 /** Return a string representation of this object */
   
   public String toString() {
-    return "Account name: " + this.getName() + " \nInterest rate: " + this.getAnnualInterestRate() +       "%" + " \nbalance: " + this.getBalance();
+	  String statement;
+	  
+	  statement = "Account name\t: " + this.getName() + "\nInterest rate\t: " + this.getAnnualInterestRate() + "%\n\n\n";
+	  for(int i = 0; i < this.transactions.size(); i++){
+		  statement += "Date\t\t:" + this.transactions.get(i).getDate() + "\n";
+		  if(this.transactions.get(i).getType() == 'W'){
+			  statement += "Type\t\t: Withdrawal\n";
+		  }
+		  else{
+			  statement += "Type\t\t: Deposit\n";
+		  }
+		  statement += "Amount\t\t:" + this.transactions.get(i).getAmount() + "\n";
+		  statement += "Balance\t\t:" + this.transactions.get(i).getBalance() + "\n";
+		  statement += "Description\t:" + this.transactions.get(i).getDescription() + "\n";
+		  statement += "\n----------------------------------------\n\n";
+	  }
+	  
+	  return statement;
   }
 
 }

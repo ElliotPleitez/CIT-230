@@ -1,3 +1,5 @@
+package Eleven.Eight;
+
 class Transaction {
 /** Data fields */
 
@@ -29,7 +31,6 @@ class Transaction {
   public void setType(char newType) {
     this.type = newType;    
   }
-
 
 /**  Return amount of transaction */
 
