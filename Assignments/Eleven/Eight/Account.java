@@ -123,6 +123,8 @@ class Account {
     //Note: All values are not being added to array
     Transaction withdrawal = new Transaction(new java.util.Date(), 'W', amount, balance, description);
     this.transactions.add(withdrawal); // Save transaction to the list of transactions
+    inputAmount.close();
+    inputDesc.close();
   }
 
   public void makeDeposit() {

@@ -10,7 +10,7 @@ public class TestElevenEight {
 		System.out.println("Deposit Statement\nAccount name\t: " + account.getName() + "\nInterest rate\t: " + account.getAnnualInterestRate() + "%" + "\nBalance\t\t: $" + account.getBalance() + "\n----------------------------------------\n\n");
 		account.makeDeposit(); //40
 		System.out.println("Deposit Statement\nAccount name\t: " + account.getName() + "\nInterest rate\t: " + account.getAnnualInterestRate() + "%" + "\nBalance\t\t: $" + account.getBalance() + "\n----------------------------------------\n\n");
-		account.makeDeposit(); //50
+		account.makeDeposit(); //
 		System.out.println("Deposit Statement\nAccount name\t: " + account.getName() + "\nInterest rate\t: " + account.getAnnualInterestRate() + "%" + "\nBalance\t\t: $" + account.getBalance() + "\n----------------------------------------\n\n");
 		
 		account.makeWithdrawal(); //5
