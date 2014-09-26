@@ -123,22 +123,20 @@ class Account {
     //Note: All values are not being added to array
     Transaction withdrawal = new Transaction(new java.util.Date(), 'W', amount, balance, description);
     this.transactions.add(withdrawal); // Save transaction to the list of transactions
-    inputAmount.close();
-    inputDesc.close();
   }
 
   public void makeDeposit() {
     Scanner inputAmount = new Scanner(System.in);    
     System.out.println("Enter amount to deposit i.e 1000 : ");
     double amount = inputAmount.nextDouble();
-    balance = (this.getBalance() + amount);
+    this.balance = (this.getBalance() + amount);
     Scanner inputDesc = new Scanner(System.in);    
     System.out.println("Enter a description: ");
     String description = inputDesc.next();
     
     // Create an instance of the Transaction    
     //Note: All values are not being added to array
-    Transaction deposit = new Transaction(new java.util.Date(), 'D', amount, balance, description);
+    Transaction deposit = new Transaction(new java.util.Date(), 'D', amount, this.balance, description);
     this.transactions.add(deposit);
   }
 
@@ -159,7 +157,7 @@ class Account {
 		  statement += "Amount\t\t:" + this.transactions.get(i).getAmount() + "\n";
 		  statement += "Balance\t\t:" + this.transactions.get(i).getBalance() + "\n";
 		  statement += "Description\t:" + this.transactions.get(i).getDescription() + "\n";
-		  statement += "\n----------------------------------------\n\n";
+		  statement += "\n\t\t-----------------------------------\n\n";
 	  }
 	  
 	  return statement;
