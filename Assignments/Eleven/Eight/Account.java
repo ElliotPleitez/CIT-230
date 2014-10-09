@@ -124,8 +124,12 @@ class Account {
         try {
             System.out.println("Enter amount to deposit i.e 1000 : ");
             amount = inputAmount.nextDouble();
-        } catch (Exception ex) {
-            System.out.println("Incorrect input, please try again\n\n");
+            if(amount <= 0){
+                System.out.println("Deposit cannot be negative, please try again");
+                throw new ElevenEightException(ExceptionType.Negative, this);
+            }
+        } catch (InputMismatchException ex) {
+            System.out.println("Incorrect input, please try again");
             throw new ElevenEightException(ExceptionType.Invalid, this);
         }
         

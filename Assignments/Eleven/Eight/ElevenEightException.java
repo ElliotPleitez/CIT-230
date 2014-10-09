@@ -6,7 +6,8 @@ public class ElevenEightException extends Exception {
 
     public enum ExceptionType {
         Overdraft,
-        Invalid;
+        Invalid,
+        Negative;
     }
 
     // Generic Exception
@@ -22,6 +23,13 @@ public class ElevenEightException extends Exception {
             break;
         case Invalid:
             this.exception = "Invalid entry";
+            try {
+                account.makeDeposit();
+            } catch (ElevenEightException e) {
+                //System.out.println("Deposit failed because of an error");
+            }
+        case Negative:
+            this.exception = "Negative";
             try {
                 account.makeDeposit();
             } catch (ElevenEightException e) {
