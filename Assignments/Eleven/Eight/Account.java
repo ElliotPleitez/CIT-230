@@ -101,18 +101,28 @@ class Account {
 
 /** Withdraw some money */
 //Exception handler:do not exceed amount in account
-  public void makeWithdrawal() {
+  public void makeWithdrawal() throws ElevenEightException{
     Scanner inputAmount = new Scanner(System.in);
+    Double amount;
     
-    try{
-        System.out.println("Enter amount to withdraw i.e 1000 : "); // Prompt user for withdrawal amount
-        double amount = inputAmount.nextDouble(); // Record amount of withdrawal
+    System.out.println("Enter amount to withdraw i.e 1000 : "); // Prompt user for withdrawal amount
+    try {
+        amount = inputAmount.nextDouble(); // Record amount of withdrawal
+    } catch (InputMismatchException ex) {
+        System.out.println("Incorrect input, please try again");
+        throw new ElevenEightException(ExceptionType.Invalid, this);
     }
-    catch(InputMismatchException ex){
-        
+    if(amount < 0){
+        System.out.println("Deposit cannot be negative, please try again");
+        throw new ElevenEightException(ExceptionType.Negative, this);
+    }
+    balance = (this.getBalance() - amount); // set new balance after withdrawal.
+    // if user's end balance is less than zero then throw exception because account cannot be negative
+    if(balance <= 0){
+        System.out.println("Cannot withdraw more than what is in the account");
+        throw new ElevenEightException(ExceptionType.Overdraft, this);
     }
 
-    balance = (this.getBalance() - amount); // set new balance after withdrawal.
     Scanner inputDesc = new Scanner(System.in);
     System.out.println("Enter a description: "); // Prompt user for a description
     String description = inputDesc.nextLine(); // Record description
@@ -128,25 +138,24 @@ class Account {
         double amount;
 
         Scanner inputAmount = new Scanner(System.in);
+        System.out.println("Enter amount to deposit i.e 1000 : ");
         try {
-            System.out.println("Enter amount to deposit i.e 1000 : ");
             amount = inputAmount.nextDouble();
-            if(amount <= 0){
-                System.out.println("Deposit cannot be negative, please try again");
-                throw new ElevenEightException(ExceptionType.Negative, this);
-            }
         } catch (InputMismatchException ex) {
             System.out.println("Incorrect input, please try again");
             throw new ElevenEightException(ExceptionType.Invalid, this);
         }
-        
+
+        if(amount < 0){
+            System.out.println("Deposit cannot be negative, please try again");
+            throw new ElevenEightException(ExceptionType.Negative, this);
+        }
         this.balance = (this.getBalance() + amount);
         Scanner inputDesc = new Scanner(System.in);
         System.out.println("Enter a description: ");
         String description = inputDesc.nextLine();
 
         // Create an instance of the Transaction
-        // Note: All values are not being added to array
         Transaction deposit = new Transaction(new java.util.Date(), 'D',
                 amount, this.balance, description);
         this.transactions.add(deposit);
