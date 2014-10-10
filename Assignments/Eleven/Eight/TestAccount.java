@@ -22,7 +22,12 @@ class TestAccount {
 
       if (choice == 1) {
 
-        account.makeDeposit();
+          try{
+              account.makeDeposit();
+          }
+          catch(ElevenEightException ex){
+              
+          }
         System.out.println();// add spaces between result and choice menu
         System.out.println();        
         choice = getUserInput();

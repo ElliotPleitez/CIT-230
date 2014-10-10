@@ -102,13 +102,20 @@ class Account {
 /** Withdraw some money */
 //Exception handler:do not exceed amount in account
   public void makeWithdrawal() {
-    Scanner inputAmount = new Scanner(System.in); 
-    System.out.println("Enter amount to withdraw i.e 1000 : "); // Prompt user for withdrawal amount
-    double amount = inputAmount.nextDouble(); // Record amount of withdrawal
+    Scanner inputAmount = new Scanner(System.in);
+    
+    try{
+        System.out.println("Enter amount to withdraw i.e 1000 : "); // Prompt user for withdrawal amount
+        double amount = inputAmount.nextDouble(); // Record amount of withdrawal
+    }
+    catch(InputMismatchException ex){
+        
+    }
+
     balance = (this.getBalance() - amount); // set new balance after withdrawal.
     Scanner inputDesc = new Scanner(System.in);
     System.out.println("Enter a description: "); // Prompt user for a description
-    String description = inputDesc.next(); // Record description
+    String description = inputDesc.nextLine(); // Record description
     
     // Create an instance of the Transaction
     //Note: All values are not being added to array
@@ -136,7 +143,7 @@ class Account {
         this.balance = (this.getBalance() + amount);
         Scanner inputDesc = new Scanner(System.in);
         System.out.println("Enter a description: ");
-        String description = inputDesc.next();
+        String description = inputDesc.nextLine();
 
         // Create an instance of the Transaction
         // Note: All values are not being added to array

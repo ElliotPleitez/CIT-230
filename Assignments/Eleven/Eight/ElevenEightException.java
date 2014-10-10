@@ -10,12 +10,7 @@ public class ElevenEightException extends Exception {
         Negative;
     }
 
-    // Generic Exception
-    public ElevenEightException() {
-
-    }
-
-    //
+    //Generic Constructor
     public ElevenEightException(ExceptionType exceptionType, Account account){
         switch(exceptionType){
         case Overdraft:
