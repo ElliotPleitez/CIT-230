@@ -116,21 +116,24 @@ class Account {
         System.out.println("Deposit cannot be negative, please try again");
         throw new ElevenEightException(ExceptionType.Negative, this);
     }
-    balance = (this.getBalance() - amount); // set new balance after withdrawal.
-    // if user's end balance is less than zero then throw exception because account cannot be negative
+    else{
+        balance = (this.getBalance() - amount); // set new balance after withdrawal.
+        // if user's end balance is less than zero then throw exception because account cannot be negative
+    }
     if(balance <= 0){
         System.out.println("Cannot withdraw more than what is in the account");
         throw new ElevenEightException(ExceptionType.Overdraft, this);
     }
-
-    Scanner inputDesc = new Scanner(System.in);
-    System.out.println("Enter a description: "); // Prompt user for a description
-    String description = inputDesc.nextLine(); // Record description
-    
-    // Create an instance of the Transaction
-    //Note: All values are not being added to array
-    Transaction withdrawal = new Transaction(new java.util.Date(), 'W', amount, balance, description);
-    this.transactions.add(withdrawal); // Save transaction to the list of transactions
+    else{
+        Scanner inputDesc = new Scanner(System.in);
+        System.out.println("Enter a description: "); // Prompt user for a description
+        String description = inputDesc.nextLine(); // Record description
+        
+        // Create an instance of the Transaction
+        //Note: All values are not being added to array
+        Transaction withdrawal = new Transaction(new java.util.Date(), 'W', amount, balance, description);
+        this.transactions.add(withdrawal); // Save transaction to the list of transactions
+    }
   }
 
   //Exception handler:not negative
@@ -145,20 +148,21 @@ class Account {
             System.out.println("Incorrect input, please try again");
             throw new ElevenEightException(ExceptionType.Invalid, this);
         }
-
         if(amount < 0){
             System.out.println("Deposit cannot be negative, please try again");
             throw new ElevenEightException(ExceptionType.Negative, this);
         }
-        this.balance = (this.getBalance() + amount);
-        Scanner inputDesc = new Scanner(System.in);
-        System.out.println("Enter a description: ");
-        String description = inputDesc.nextLine();
+        else{
+            this.balance = (this.getBalance() + amount);
+            Scanner inputDesc = new Scanner(System.in);
+            System.out.println("Enter a description: ");
+            String description = inputDesc.nextLine();
 
-        // Create an instance of the Transaction
-        Transaction deposit = new Transaction(new java.util.Date(), 'D',
-                amount, this.balance, description);
-        this.transactions.add(deposit);
+            // Create an instance of the Transaction
+            Transaction deposit = new Transaction(new java.util.Date(), 'D',
+                    amount, this.balance, description);
+            this.transactions.add(deposit);
+        }
     }
 
 /** Return a string representation of this object */
