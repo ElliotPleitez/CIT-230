@@ -117,7 +117,7 @@ class Account {
         throw new ElevenEightException(ExceptionType.Negative, this);
     }
     // if user's end balance is less than zero then throw exception because account cannot be negative
-    if(balance <= 0){
+    if(amount > balance){
         System.out.println("Cannot withdraw more than what is in the account");
         throw new ElevenEightException(ExceptionType.Overdraft, this);
     }
