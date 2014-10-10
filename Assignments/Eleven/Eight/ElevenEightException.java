@@ -20,26 +20,26 @@ public class ElevenEightException extends Exception {
         switch(exceptionType){
         case Overdraft:
             this.exception = "Cannot overdraft";
-            try {
-                account.makeWithdrawal();
-            } catch (ElevenEightException e) {
-                //System.out.println("Withdraw failed because of an error");
-            }
+//            try {
+//                account.makeWithdrawal();
+//            } catch (ElevenEightException e) {
+//                //System.out.println("Withdraw failed because of an error");
+//            }
             break;
         case Invalid:
             this.exception = "Invalid entry";
-            try {
-                account.makeDeposit();
-            } catch (ElevenEightException e) {
-                //System.out.println("Deposit failed because of an error");
-            }
+//            try {
+//                account.makeDeposit();
+//            } catch (ElevenEightException e) {
+//                //System.out.println("Deposit failed because of an error");
+//            }
         case Negative:
             this.exception = "Negative";
-            try {
-                account.makeDeposit();
-            } catch (ElevenEightException e) {
-                //System.out.println("Deposit/Withdraw failed because of an error");
-            }
+//            try {
+//                account.makeDeposit();
+//            } catch (ElevenEightException e) {
+//                //System.out.println("Deposit/Withdraw failed because of an error");
+//            }
         default:
             this.exception = "Default exception";
             break;
