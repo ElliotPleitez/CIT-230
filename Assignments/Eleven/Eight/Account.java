@@ -116,15 +116,13 @@ class Account {
         System.out.println("Deposit cannot be negative, please try again");
         throw new ElevenEightException(ExceptionType.Negative, this);
     }
-    else{
-        balance = (this.getBalance() - amount); // set new balance after withdrawal.
-        // if user's end balance is less than zero then throw exception because account cannot be negative
-    }
+    // if user's end balance is less than zero then throw exception because account cannot be negative
     if(balance <= 0){
         System.out.println("Cannot withdraw more than what is in the account");
         throw new ElevenEightException(ExceptionType.Overdraft, this);
     }
     else{
+        balance = (this.getBalance() - amount); // set new balance after withdrawal.
         Scanner inputDesc = new Scanner(System.in);
         System.out.println("Enter a description: "); // Prompt user for a description
         String description = inputDesc.nextLine(); // Record description
