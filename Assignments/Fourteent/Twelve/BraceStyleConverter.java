@@ -68,3 +68,9 @@ public class BraceStyleConverter {
     }
   }
 } 
+
+////Comments by: Elliot J Pleitez
+//Date: 2014-10-18
+//Program runs as expected and does exactly what is necessary.
+//Program is documented and well written for future modifications.
+//One improvement i'd do add a few more handlers so it work's with any possible error.

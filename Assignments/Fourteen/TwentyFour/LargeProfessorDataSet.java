@@ -4,6 +4,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.*;
 
+import javax.swing.JFileChooser;
+
 /**
 //Author: Luisito Espanola
 //Date: 2014-10-16
@@ -39,7 +41,17 @@ public class LargeProfessorDataSet {
         for (int i = 1; i <= 1000; i++) {
             Professor professor = new Professor(firstName, lastName, i);
             professorList.add(professor);
-        }        
+        }
+        
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        File file = fileChooser.getSelectedFile();
+        fileChooser.showOpenDialog(null);
+        
+//           File file = fileChooser.getSelectedFile();
+//           Integer opt = j.showSaveDialog(this);
+            
+            
         // Create instance of output file to write to
         File salaryFile = new File("Salary.txt");
         // Write elements of inputFile to output file
@@ -51,3 +63,9 @@ public class LargeProfessorDataSet {
         output.close();
     }
 }
+
+//Comments by: Elliot J Pleitez
+//Date: 2014-10-18
+//Program runs as expected and does exactly what is necessary.
+//Program is documented and well written for future modifications.
+//One improvement i'd do is provide a directory to save file.
