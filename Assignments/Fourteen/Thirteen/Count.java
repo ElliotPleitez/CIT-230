@@ -72,3 +72,17 @@ public class Count {
         }
     }
 }
+/**
+ 
+ Comments by Luisito Espanola
+ Date: 2014-10-18
+ Your comments must be on:
+
+ proper execution of the program as if you are testing it.
+    The program executed properly.
+ proper understanding of the code as if you have to modify it.
+    Code easy to understand. 
+ any suggestion to improve the code, in your opinion - please be respectful in this step. 
+    Code needs no improvements. I like the solution. I learned a new way of using the Scanner class.
+      
+ */

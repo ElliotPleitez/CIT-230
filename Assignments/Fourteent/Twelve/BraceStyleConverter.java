@@ -6,7 +6,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
-
+//Author: Luisito Espanola
+//Date: 2014-10-16
 Problem 14.12 Write a program that converts the Java source code from the next-line brace style to the end-of-line brace style.
 
 Solution:
