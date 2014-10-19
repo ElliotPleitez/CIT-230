@@ -29,7 +29,7 @@ public class BraceStyleConverter {
         System.out.println("Please select to open the file you want to convert");
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            // Get the selected file
+            // Get the selected file use the BMI.java file in the same directory
             File file = fileChooser.getSelectedFile();
 
            // Create a Scanner for the file

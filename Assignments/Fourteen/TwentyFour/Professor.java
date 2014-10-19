@@ -5,7 +5,7 @@ import java.util.Random;
 public class Professor {
     String firstName, lastName;
     Rank rank;
-    long salary;
+    double salary;
     // Randomly generate rank between 3 choices
     public enum Rank {
         Assistant,
@@ -17,25 +17,26 @@ public class Professor {
         this.firstName = firstName + i;
         this.lastName = lastName + i;
         this.rank = Rank.values()[new Random().nextInt(Rank.values().length)];
-        
-        double random;
+        // Generate a random Salary amount based on rank with random cents also
+        int dollarRandom;
+        double centRandom;
         switch(rank){
         case Assistant:
-            random = new Random().nextDouble();
-            double unroundedSalary = 50000 + (random * (80000 - 50000));
-            this.salary = Math.round(unroundedSalary * 100) / 100;
+            dollarRandom = new Random().nextInt((80000 - 50000) + 1) + 50000;
+            centRandom = new Random().nextInt(100);
+            this.salary = dollarRandom + (centRandom / 100);
             break;
         case Associate:
-            random = new Random().nextDouble();
-            double unroundedSalary1 = 60000 + (random * (110000 - 60000));
-            this.salary = Math.round(unroundedSalary1 * 100) / 100;
+            dollarRandom = new Random().nextInt((110000 - 60000) + 1) + 110000;
+            centRandom = new Random().nextInt(100);
+            this.salary = dollarRandom + (centRandom / 100);
             break;
         case Full:
-            random = new Random().nextDouble();
-            double unroundedSalary2 = 75000 + (random * (130000 - 75000));
-            this.salary = Math.round(unroundedSalary2 * 100) / 100;
+            dollarRandom = new Random().nextInt((130000 - 75000) + 1) + 75000;
+            centRandom = new Random().nextInt(100);
+            this.salary = dollarRandom + (centRandom / 100);
             break;
-        }        
+        }          
     }
     // Return professor first name
     public String getFirstName() {
@@ -50,10 +51,10 @@ public class Professor {
         return this.rank;    
     }
     // Return salary
-    public double getSalary() {
-        return this.salary;    
-    }
-    // Override toString to display professor fields separated by spaces
+	public double getSalary() {
+	    return this.salary;    
+	}
+	// Override toString to display professor fields separated by spaces
     public String toString() {
     	return (this.getFirstName() + " " + this.getLastName() + " " + this.getRank() + " " + this.getSalary());  	
     }

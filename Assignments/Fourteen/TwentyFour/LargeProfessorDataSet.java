@@ -40,13 +40,12 @@ public class LargeProfessorDataSet {
             Professor professor = new Professor(firstName, lastName, i);
             professorList.add(professor);
         }        
-        System.out.println(professorList.size());
         // Create instance of output file to write to
         File salaryFile = new File("Salary.txt");
         // Write elements of inputFile to output file
         PrintWriter output = new PrintWriter(salaryFile);
-        for (int i = 0; i <= 1000; i++) {
-            output.print(professorList.toString());            
+        for (int i = 0; i < 1000; i++) {
+            output.println(professorList.get(i).toString());
         }
         // Close the file
         output.close();
