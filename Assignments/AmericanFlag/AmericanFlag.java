@@ -36,21 +36,21 @@ public class AmericanFlag extends JFrame {
     
     ArrayList<MyGeometry> geometry = new ArrayList<MyGeometry>();
     
-    public enum Shape {
-        Star,
-        Rectangle,
-    }
+//    public enum Shape {
+//        Star,
+//        Rectangle,
+//    }
     
     public AmericanFlag(){
-        this.add(new MyGeometry(Shape.Star))
+//        this.add(new MyGeometry(Shape.Star))
 //        double hoist = 1.0, fly = 1.9;
 //        double unionHoist = 7 / 3, unionFly = 0.76;
 //        double spacingHoist = 7 / 130, spacingFly = 0.76 / 12;
 //        double stripe = 1 / 13;
 //        double starDiameter = 0.0616;
         
-        this.add(new StarShape(){{ x = 0.000; y = 0.000; s = 500; }});
-        this.add(new StarShape(){{ x = 0.063; y = 0.000; s = 500; }});
+//        this.add(new StarShape(){{ x = 0.000; y = 0.000; s = 500; }});
+//        this.add(new StarShape(){{ x = 0.063; y = 0.000; s = 500; }});
     }
 
     class MyGeometry{
