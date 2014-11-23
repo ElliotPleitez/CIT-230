@@ -1,11 +1,14 @@
 package AmericanFlag;
 
-//http://en.wikipedia.org/wiki/Flag_of_the_United_States
-//http://way2java.com/awt-graphics/drawing-polygons-graphics-in-applets/
-//http://mathbits.com/MathBits/Java/Graphics/GraphingFill.htm
-//http://stackoverflow.com/questions/15620590/polygons-with-double-coordinates
-//http://stackoverflow.com/questions/22824454/painting-multiple-objects-in-java
+//Author: Elliot J Pleitez
+//Date: 2014-11-23
+//Description: This application simply draws an accurate American flag
 
+//http://en.wikipedia.org/wiki/Flag_of_the_United_States (American flag dimensions)
+//http://way2java.com/awt-graphics/drawing-polygons-graphics-in-applets/ (not used because double not supported)
+//http://mathbits.com/MathBits/Java/Graphics/GraphingFill.htm (fill g)
+//http://stackoverflow.com/questions/15620590/polygons-with-double-coordinates (drawing with double precision)
+//http://stackoverflow.com/questions/22824454/painting-multiple-objects-in-java (not used, but considered at one point)
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,95 +23,89 @@ import javax.swing.JPanel;
 public class AmericanFlag extends JFrame {
 
     public static void main(String[] args) {
-        AmericanFlag star = new AmericanFlag();
-        star.setTitle("American Flag");
-        star.setSize(300,200);
-        star.setLocationRelativeTo(null);
-        star.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-//        star.setBackground(new Color(60, 59, 110)); //Blue
-//        star.setBackground(new Color(255, 255, 255)); //White
-//        star.setBackground(new Color(178, 34, 52)); //Red
-        
-        star.setVisible(true);
+        AmericanFlag flag = new AmericanFlag();
+        flag.setTitle("American Flag");
+        flag.setSize(950, 539); //change to match SIZE
+        flag.setLocationRelativeTo(null);
+        flag.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        flag.setBackground(new Color(255, 255, 255)); //draw background white to make drawing flag easier
+        flag.setVisible(true);
     }
-
-//    ArrayList<MyGeometry> geometry = new ArrayList<MyGeometry>();
-//    public enum Shape {
-//        Star,
-//        Rectangle,
-//    }
     
     public AmericanFlag(){
-//        this.add(new MyGeometry(Shape.Star))
-//        double hoist = 1.0, fly = 1.9;
-//        double unionHoist = 7 / 3, unionFly = 0.76;
-//        double spacingHoist = 7 / 130, spacingFly = 0.76 / 12;
-//        double stripe = 1 / 13;
-//        double starDiameter = 0.0616;
-    	
-    	//JPanel panel = new JPanel();
-    	//this.add(new StarShape(){{ x = 0.000; y = 0.000; s = 500; }});
-    	this.add(new StarShape());
-        //this.add(new StarShape(){{ x = 0.063; y = 0.000; s = 500; }});
-        
-        //this.add(panel);
+        this.add(new FlagGeometry()); //begin...
     }
 
-//    class MyGeometry{
-        class StarShape extends JPanel{
-            public double x = 0.000, y = 0.000, s = 250, s1 = 15;
-            
-            public void paintComponent(Graphics g){
-            	myPaint(g, this.x, this.y, this.s);
-            }
-            
-            private void myPaint(Graphics g, double x, double y, double s){
-                double xPoints[] = {0.03080000, 0.03771503, 0.06009254, 0.04198875, 0.04890379, 0.03080000, 0.01269621, 0.01961125, 0.00150746, 0.02388497, 0.03080000};
-                double yPoints[] = {0.00000000, 0.02128228, 0.02128228, 0.03443545, 0.05571772, 0.04256455, 0.05571772, 0.03443545, 0.02128228, 0.02128228, 0.00000000};
-            	
-                Graphics2D g2d = (Graphics2D) g;
-                Path2D path = new Path2D.Double();
-                
-            	for(int i = 0; i < 6; i++){
-                    path.moveTo(xPoints[0] + i * 100, yPoints[0] + i * 100);
-                    for(int j = 0; j < xPoints.length; j++){
-                        path.lineTo((xPoints[j] + this.x) * this.s + (i * this.s1), (yPoints[j] + this.y) * this.s);
-                    }
-                    path.closePath();
-                    g2d.setColor(new Color(255, 255, 255));
-                    g2d.fill(path);
-            	}
-            	
-            }
-        }
+    class FlagGeometry extends JPanel{
+        double SIZE = 500; //Pixel height (not accurate, but will determine at later time)
         
-        class RectangleShape extends JPanel{
-            public double x = 0.000, y = 15.000, s = 250, s1 = 20;
-            
-            public void paintComponent(Graphics g){
-            	myPaint(g, this.x, this.y, this.s);
+        //http://en.wikipedia.org/wiki/File:Flag_of_the_United_States_specification.svg
+        double ptA = 1.0 * this.SIZE, ptB = 1.9 * this.SIZE;
+        double ptC = ptA * (7.0 / 13.0), ptD = ptB * (2.0 /5.0);
+        double ptL = ptA / 13.0;
+        double ptE = ptC / 10.0, ptG = ptD / 12.0;
+        double ptK = ptL * (4.0 / 5.0);
+        double KxPoints[] = {0.03076923, 0.03076923, 0.03767735, 0.06003251, 0.04194681, 0.04885493, 0.03076923, 0.01268353, 0.01959165, 0.00150595, 0.02386111, 0.03076923, 0.03076923};
+        double KyPoints[] = {0.03076923, 0.00000000, 0.02126102, 0.02126102, 0.03440105, 0.05566206, 0.04252203, 0.05566206, 0.03440105, 0.02126102, 0.02126102, 0.00000000, 0.03076923};
+        Color red = new Color(178, 34, 52);
+        Color white = new Color(255, 255, 255);
+        Color blue = new Color(60, 59, 110);
+        
+        public void paintComponent(Graphics g){
+            //draw stripes
+            Graphics2D stripes = (Graphics2D) g;
+            Path2D stripesPath = new Path2D.Double();
+            double StripesxPoints[] = {0, this.ptB, this.ptB, 0};
+            double StripesyPoints[] = {0, 0, this.ptL, this.ptL};
+            for(int i = 0; i < 13; i++){ //for each stripe
+                if((i & 1) == 0){ //if stripe count is even then draw red
+                    stripesPath.moveTo(0, this.ptL * i);
+                    for(int j = 0; j < StripesxPoints.length; j++){
+                        stripesPath.lineTo(StripesxPoints[j], StripesyPoints[j] + (this.ptL * i));
+                    }
+                    stripesPath.closePath();
+                    stripes.setColor(this.red);
+                    stripes.fill(stripesPath);
+                }
             }
             
-            private void myPaint(Graphics g, double x, double y, double s){
-                double xPoints[] = {0.03080000, 0.03771503, 0.06009254, 0.04198875, 0.04890379, 0.03080000, 0.01269621, 0.01961125, 0.00150746, 0.02388497, 0.03080000};
-                double yPoints[] = {0.00000000, 0.02128228, 0.02128228, 0.03443545, 0.05571772, 0.04256455, 0.05571772, 0.03443545, 0.02128228, 0.02128228, 0.00000000};
-            	
-                Graphics2D g2d = (Graphics2D) g;
-                Path2D path = new Path2D.Double();
-                
-            	for(int i = 0; i < 6; i++){
-                    path.moveTo(xPoints[0] + i * 100, yPoints[0] + i * 100);
-                    for(int j = 0; j < xPoints.length; j++){
-                        path.lineTo((xPoints[j] + this.x) * this.s + (i * this.s1), (yPoints[j] + this.y) * this.s);
+            //draw canton
+            Graphics2D canton = (Graphics2D) g;
+            Path2D cantonPath = new Path2D.Double();
+            double CantonxPoints[] = {0, this.ptD, this.ptD, 0};
+            double CantonyPoints[] = {0, 0, this.ptC, this.ptC};
+            cantonPath.moveTo(0, 0);
+            for(int i = 0; i < CantonxPoints.length; i++){
+                cantonPath.lineTo(CantonxPoints[i], CantonyPoints[i]);
+            }
+            cantonPath.closePath();
+            canton.setColor(this.blue);
+            canton.fill(cantonPath);
+            
+            //draw stars
+            Graphics2D stars = (Graphics2D) g;
+            Path2D starsPath = new Path2D.Double();
+            for(int i = 0; i < 9; i++){ //foreach E row
+                for(int j = 0; j < 6; j++){ //foreach G column
+                    starsPath.moveTo(this.ptG, this.ptE);
+                    for(int k = 0; k < this.KxPoints.length; k++){ //foreach point in star
+                        double xCoord = (this.KxPoints[k] * this.SIZE);
+                        double yCoord = (this.KyPoints[k] * this.SIZE);
+                        if((i & 1) == 0){ //if even
+                            starsPath.lineTo(xCoord + (this.ptG * j) * 2 + (this.ptG * 0.5), yCoord + (this.ptE * i) + (this.ptE * 0.5)); //account for offset and double spacing
+                        }
+                        else{
+                            if(j != 5){ //do not draw last star in loop
+                                starsPath.lineTo(xCoord + this.ptG + this.ptG * j * 2 + (this.ptG * 0.5), yCoord + (this.ptE * i) + (this.ptE * 0.5)); //account for offset and double spacing
+                            }
+                        }
                     }
-                    path.closePath();
-                    g2d.setColor(new Color(255, 255, 255));
-                    g2d.fill(path);
-            	}
-            	
+                    starsPath.closePath();
+                    stars.setColor(this.white);
+                    stars.fill(starsPath);
+                }
             }
         }
-//    }
+    }
     
 }
